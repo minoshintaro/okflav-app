@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Hina+Mincho&family=Noto+Serif+JP&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-display: 'Roboto', sans-serif;
+  --font-mincho: 'Hina Mincho', serif;
+}
+
+body::-webkit-scrollbar { display:none; }
+
+@layer base {
+  html, body, #root {
+    height: 100%;
+  }
+
+  #root {
+    isolation: isolate;
+  }
+}
+
+@layer components {
+  .loader {
+    --loader-color: oklch(0.646 0.222 41.116 / 0.5);
+    --loader-bg: oklch(0.646 0.222 41.116 / 0);
+    width: 32px;
+    aspect-ratio: 4;
+    background: radial-gradient(
+        circle closest-side,
+        var(--loader-color) 90%,
+        var(--loader-bg)
+      )
+      0/calc(100%/3) 100% no-repeat;
+    animation: l2 1s steps(3) infinite;
+  }
+
+  @keyframes l2 {
+    to { background-position: 150%; }
+  }
+
+  [data-scrollbar="hidden"] {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  [data-scrollbar="hidden"]::-webkit-scrollbar {
+    display: none;
+  }
+
+}
+
